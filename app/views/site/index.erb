@@ -1,0 +1,395 @@
+
+<h1>API Epublishing Docs</h1>
+<div><img src="http://www.epublishing.com/images/global/epub_logo.png" atitle="ePub API" alt="ePub API"/></div>
+
+<div class="section">
+  <div class="title_one">Available Servers</div>
+  <div class="example">
+    <p>Test</p>
+    <p>https://api-stage.epublishing.com/</p>
+
+    <p>Production</p>
+    <p>https://api.epublishing.com/</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="title_one">Authorization</div>
+  <p>Every call to the API is sent over the HTTPS protocol and must contain both elements to identify the request, the <b>api_key</b> and the <b>secret_key</b>.</p>
+  <div class="CSSTable">
+    <table>
+      <tr><td>Name      </td> <td>Type</td></tr>
+      <tr><td>api_key   </td> <td>String</td></tr>
+      <tr><td>secret_key</td> <td>String</td></tr>
+    </table>
+  </div>
+
+
+  <p><b>Request URL</b></p>
+  <p>https://api_key:secret_key@api.epublishing.com/</p>
+
+  <div class="example">
+    <p>Example:</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/users/getinfo/fh5Uy67-E3QQ</p>
+  </div>
+</div>
+
+<!-- accounts/show -->
+<div class="section">
+  <div class="title_one">Get account info</div>
+  <div class="method">Method: GET</div>
+
+  <p><b>Description</b></p>
+  <p>This method retrieves user account data.</p>
+
+  <p><b>Request URL</b></p>
+  <p>https://api-stage.epublishing.com/v1/users/getinfo/</p>
+
+  <p><b>Parameters</b></p>
+  <div class="CSSTable">
+    <table>
+      <tr><td>Type</td><td>Name</td><td>Type   </td><td>Description</td></tr>
+      <tr><td>Required</td><td>user_token </td><td>String </td><td>The unique ID of the user for which to retrieve data. </td></tr>
+    </table>
+  </div>
+
+  <div class="example">
+    <p>Example:</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/v1/users/getinfo/fh5Uy67-E3QQ</p>
+  </div>
+
+  <div class="example">
+    <p>Response Example:</p>
+      <pre>
+        <code>
+          {
+            "hyper": {
+              "statusCode": 200,
+              "errorCode": 0,
+              "version": 1,
+              "href_delete": "https://api.epublishing.com/v1/accounts/delete/Cl4YzNxdcYmJxy2ezhr69w",
+              "doc": "https://api.epublishing.com/"
+            },
+            "data": {
+              "id": "54069",
+              "email": "jsonmith@jmithmx.com",
+              "honorificPrefix": "",
+              "givenName": "John",
+              "additionalName": "",
+              "familyName": "Smith",
+              "honorificSuffix": "",
+              "address": {
+                "streetAddress": "  ",
+                "addressLocality": "",
+                "addressRegion": "",
+                "country": "US",
+                "postalCode": "0000"
+              },
+              "internalNotes": "",
+              "worksFor": {
+                "legalName": "",
+                "telephone": ""
+              },
+                "telephone": "",
+                "cellNumber": "",
+                "faxNumber": "",
+                "UID": "Cl4YzNxdcYmJxy2ezhr69w",
+                "legacy_id" : "4567788"
+              }
+          }
+        </code>
+      </pre>
+    </div>
+
+</div>
+
+<!-- accounts/create -->
+<div class="section">
+  <div class="title_one">Create new account</div>
+  <div class="method">Method: POST</div>
+
+  <p><b>Description</b></p>
+  <p>This method creates a new user account.</p>
+
+  <p><b>Request URL</b></p>
+  <p>https://api-stage.epublishing.com/v1/users/</p>
+
+  <h3>Parameters</h3>
+  <div class="CSSTable">
+    <table>
+      <tr><td>Type    </td><td>Name                     </td><td>Type   </td><td>Max length</td><td>Description                             </td></tr>
+      <tr><td>Required</td><td>user_type                </td><td>String </td><td>100</td>       <td>'individiual' or 'site-license'         </td></tr>
+      <tr><td>Required</td><td>email                    </td><td>String </td><td>100</td>       <td>Email                                   </td></tr>
+      <tr><td>Required</td><td>first                    </td><td>String </td><td>100</td>       <td>Fist name                               </td></tr>
+      <tr><td>Required</td><td>last                     </td><td>String </td><td>100</td>       <td>Last name                               </td></tr>
+      <tr><td>Required</td><td>new_password             </td><td>String </td><td>100</td>       <td>Password                                </td></tr>
+      <tr><td>Required</td><td>new_password_confirmation</td><td>String </td><td>100</td>       <td>Password confirmation                   </td></tr>
+      <tr><td>Required</td><td>country                  </td><td>String </td><td>2  </td>       <td> Two character country. Examples: US, CA, MX, AR </td></tr>
+      <tr><td>Optional</td><td>legacy_id                </td><td>String </td><td>100</td>       <td>Legacy id string                        </td></tr>
+      <tr><td>Optional</td><td>notes                    </td><td>text   </td><td>300</td>       <td>Notes                                   </td></tr>
+      <tr><td>Optional</td><td>address1                 </td><td>String </td><td>100</td>       <td>Address 1                               </td></tr>
+      <tr><td>Optional</td><td>address2                 </td><td>String </td><td>100</td>       <td>Address 2                               </td></tr>
+      <tr><td>Optional</td><td>state                    </td><td>String </td><td>100</td>       <td>State                                   </td></tr>
+      <tr><td>Optional</td><td>city                     </td><td>String </td><td>100</td>       <td>City                                    </td></tr>
+      <tr><td>Optional</td><td>postal_code              </td><td>String </td><td>100</td>       <td>Postal Code                             </td></tr>
+      <tr><td>Optional</td><td>province                 </td><td>String </td><td>100</td>       <td>Province                                </td></tr>
+      <tr><td>Optional</td><td>company                  </td><td>String </td><td>100</td>       <td>Company name                            </td></tr>
+      <tr><td>Optional</td><td>job_title                </td><td>String </td><td>100</td>       <td>Job title                               </td></tr>
+      <tr><td>Optional</td><td>cell_phone               </td><td>String </td><td>100</td>       <td>Cell phone number                       </td></tr>
+      <tr><td>Optional</td><td>work_phone               </td><td>String </td><td>100</td>       <td>Work phone number                       </td></tr>
+      <tr><td>Optional</td><td>home_phone               </td><td>String </td><td>100</td>       <td>Home phone number                       </td></tr>
+      <tr><td>Optional</td><td>fax                      </td><td>String </td><td>100</td>       <td>Fax number                              </td></tr>
+    </table>
+  </div>
+  <div class="example">
+    <p>Example Ruby code:</p>
+      <pre>
+        <code>
+          require 'net/http'
+          require 'json'
+
+          api_secret = '4JJgHHU'
+          api_key    = 's3cer3TYUiXX'
+
+          base_url_api = 'api-stage.epublishing.com'
+          port         = 443
+
+          http    = Net::HTTP.new(base_url_api, port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          url     = '/v1/users/create/'
+          request = Net::HTTP::Post.new(url)
+          request.basic_auth(api_key, api_secret)
+
+          params = {
+            user_type: 'individual',
+            first: 'John',
+            last: 'Smith',
+            email: 'jsonmith66@jmithmx.com',
+            country: 'US',
+            new_password: 'ASQWert78@@',
+            new_password_confirmation: 'ASQWert78@@'
+          }
+
+          request.set_form_data(params)
+          response = http.request(request)
+
+          parsed = JSON.parse(response.body)
+
+          puts "#{parsed}"
+
+        </code>
+      </pre>
+      <p><a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en" target="_blank">Testing with Postman REST Client</a></p>
+      <p><img src="/images/api_img_01.png" alt="Postman REST" title="Postman REST" style="border:1px solid black;"/></p>
+  </div>
+
+
+</div>
+
+<!-- users/update -->
+<div class="section">
+  <div class="title_one">Update account info</div>
+  <div class="method">Method: POST</div>
+
+  <p><b>Description</b></p>
+  <p>This method updates user account data.</p>
+
+  <p><b>Request URL</b></p>
+  <p>https://api.epublishing.com/v1/users/update/</p>
+
+  <h3>Parameters</h3>
+  <div class="CSSTable">
+    <table>
+      <tr><td>Type    </td><td>Name             </td><td>Type   </td><td>Max length</td><td>Description                             </td></tr>
+      <tr><td>Required</td><td>user_token       </td><td>String </td><td>100</td>       <td>The unique ID of the user               </td></tr>
+      <tr><td>Optional</td><td>user_type        </td><td>String </td><td>100</td>       <td>'individiual' or 'site-license'         </td></tr>
+      <tr><td>Optional</td><td>email            </td><td>String </td><td>100</td>       <td>Email                                   </td></tr>
+      <tr><td>Optional</td><td>first            </td><td>String </td><td>100</td>       <td>Fist name                               </td></tr>
+      <tr><td>Optional</td><td>last             </td><td>String </td><td>100</td>       <td>Last name                               </td></tr>
+      <tr><td>Optional</td><td>country          </td><td>String </td><td>2  </td>       <td>Two character country. Examples: US, CA, MX, AR </td></tr>
+      <tr><td>Optional</td><td>legacy_id        </td><td>String </td><td>100</td>       <td>Legacy id string                        </td></tr>
+      <tr><td>Optional</td><td>notes            </td><td>text   </td><td>300</td>       <td>Notes                                   </td></tr>
+      <tr><td>Optional</td><td>address1         </td><td>String </td><td>100</td>       <td>Address 1                               </td></tr>
+      <tr><td>Optional</td><td>address2         </td><td>String </td><td>100</td>       <td>Address 2                               </td></tr>
+      <tr><td>Optional</td><td>state            </td><td>String </td><td>100</td>       <td>State                                   </td></tr>
+      <tr><td>Optional</td><td>city             </td><td>String </td><td>100</td>       <td>City                                    </td></tr>
+      <tr><td>Optional</td><td>postal_code      </td><td>String </td><td>100</td>       <td>Postal Code                             </td></tr>
+      <tr><td>Optional</td><td>province         </td><td>String </td><td>100</td>       <td>Province                                </td></tr>
+      <tr><td>Optional</td><td>company          </td><td>String </td><td>100</td>       <td>Company name                            </td></tr>
+      <tr><td>Optional</td><td>job_title        </td><td>String </td><td>100</td>       <td>Job title                               </td></tr>
+      <tr><td>Optional</td><td>cell_phone       </td><td>String </td><td>100</td>       <td>Cell phone number                       </td></tr>
+      <tr><td>Optional</td><td>work_phone       </td><td>String </td><td>100</td>       <td>Work phone number                       </td></tr>
+      <tr><td>Optional</td><td>home_phone       </td><td>String </td><td>100</td>       <td>Home phone number                       </td></tr>
+      <tr><td>Optional</td><td>fax              </td><td>String </td><td>100</td>       <td>Fax number                              </td></tr>
+    </table>
+  </div>
+
+
+  <div class="example">
+    <p>Example Ruby code:</p>
+      <pre>
+        <code>
+          require 'net/http'
+          require 'json'
+
+          api_secret = '4JJgHHU'
+          api_key    = 's3cer3TYUiXX'
+
+          base_url_api = 'api-stage.epublishing.com'
+          port         = 443
+
+          http    = Net::HTTP.new(base_url_api, port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          url     = '/v1/users/update/'
+          request = Net::HTTP::Post.new(url)
+          request.basic_auth(api_key, api_secret)
+
+          params = {
+            first: 'Julian',
+            last: 'Simpson',
+            email: 'julian66@mymail.com',
+            user_token: '_gtyHHlzZ90TInkwiylkQ'
+          }
+
+          request.set_form_data(params)
+          response = http.request(request)
+
+          parsed = JSON.parse(response.body)
+
+          puts "#{parsed}"
+
+        </code>
+      </pre>
+      <p><a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en" target="_blank">Testing with Postman REST Client</a></p>
+      <p><img src="/images/api_img_02.png" alt="Postman REST" title="Postman REST" style="border:1px solid black;"/></p>
+  </div>
+</div>
+
+<!-- users/gettoken -->
+<div class="section">
+  <div class="title_one">Get account info through email or User id</div>
+  <div class="method">Method: GET</div>
+  <p><b>Description</b></p>
+  <p>This method retrieves user account data.</p>
+
+  <p><b>Request URL</b></p>
+  <p>https://api-stage.epublishing.com/v1/users/gettoken/</p>
+
+  <p><b>Parameters</b></p>
+  <div class="CSSTable">
+    <table>
+      <tr><td>Type</td><td>Name  </td><td>Type   </td><td>Description</td></tr>
+      <tr><td>Required</td><td>id    </td><td>String </td><td>The unique numeric ID of the user for which to retrieve data. </td></tr>
+      <tr><td>Required</td><td>email </td><td>String </td><td>The unique email of the user for which to retrieve data. </td></tr>
+    </table>
+  </div>
+  <p>The request must contain <b>id</b> or <b>email</b> but not both.</p>
+  <div class="example">
+    <p>Examples:</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/v1/users/gettoken/?email=username@email.com</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/v1/users/gettoken/?id=34567</p>
+  </div>
+</div>
+
+<!-- users/createtoken -->
+<div class="section">
+  <div class="title_one">Create user token through email or User id</div>
+  <div class="method">Method: GET</div>
+  <p><b>Description</b></p>
+  <p>This method creates user token and retrieves user account data.</p>
+
+  <p><b>Request URL</b></p>
+  <p>https://api-stage.epublishing.com/v1/users/createtoken/</p>
+
+   <div class="CSSTable">
+    <table>
+      <tr><td>Type</td><td>Name  </td><td>Type   </td><td>Description</td></tr>
+      <tr><td>Required</td><td>id    </td><td>String </td><td>The unique numeric ID of the user for which to retrieve data. </td></tr>
+      <tr><td>Required</td><td>email </td><td>String </td><td>The unique email of the user for which to retrieve data. </td></tr>
+    </table>
+  </div>
+  <p>The request must contain <b>id</b> or <b>email</b> but not both.</p>
+
+  <div class="example">
+    <p>Examples:</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/v1/users/createtoken/?email=username@email.com</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/v1/users/createtoken/?id=34567</p>
+  </div>
+</div>
+
+<!-- accounts/delete -->
+<div class="section">
+  <div class="title_one">Delete account</div>
+  <div class="method">Method: GET</div>
+
+  <h3>Description</h3>
+
+  <p>This method deletes the specified user's account from Epublishing's database.</p>
+
+  <h3>Request URL</h3>
+  <p>https://api-stage.epublishing.com/v1/users/delete/</p>
+
+  <h3>Parameters</h3>
+
+  <div class="CSSTable">
+    <table>
+      <tr><td>Required</td><td>Name</td><td>Type   </td><td>Description</td></tr>
+      <tr><td>Required</td><td>user_token </td><td>String </td><td>The unique ID of the user to be removed. </td></tr>
+    </table>
+  </div>
+
+   <div class="example">
+    <p>Example:</p>
+    <p>https://4JJgHHU:s3cer3TYUiXX@api.epublishing.com/users/delete/fh5Uy67-E3QQ</p>
+  </div>
+ </div>
+
+  <!-- error/codes -->
+  <div class="section">
+    <h3>Error codes</h3>
+    <div class="CSSTable">
+      <table>
+        <tr><td>errorCode</td><td>Code Purpose </td></tr>
+        <tr><td>50      </td><td> Missing  Type  of  User</td></tr>
+        <tr><td>51      </td><td> Missing  Email Address</td></tr>
+        <tr><td>52      </td><td> Missing  First Name</td></tr>
+        <tr><td>53      </td><td> Missing  Last  Name</td></tr>
+        <tr><td>55      </td><td> Invalid  Salutation</td></tr>
+        <tr><td>56      </td><td> First  Name  too long</td></tr>
+        <tr><td>57      </td><td> Last Name  too long</td></tr>
+        <tr><td>58      </td><td> Middle Name  too long</td></tr>
+        <tr><td>59      </td><td> Suffix too long</td></tr>
+        <tr><td>60      </td><td> Invalid  email formatting</td></tr>
+        <tr><td>61      </td><td> Duplicate  email. Email already in  use on  the system.</td></tr>
+        <tr><td>62      </td><td> Internal notes exceed  field.</td></tr>
+        <tr><td>63      </td><td> Address1 too long</td></tr>
+        <tr><td>64      </td><td>Address2 too long</td></tr>
+        <tr><td>65      </td><td>City too long</td></tr>
+        <tr><td>66      </td><td>State  / Province  code  does  not exist in  ISO 2 character code  or  is otherwise invalid</td></tr>
+        <tr><td>67      </td><td> Zip  / Postal  code  contains  punctuation</td></tr>
+        <tr><td>68      </td><td> Zip  / Postal  code  too long</td></tr>
+        <tr><td>69      </td><td> Country  code  does  not exist in  ISO 2 character code  or  is  otherwise invalid</td></tr>
+        <tr><td>70      </td><td> Country  is  missing</td></tr>
+        <tr><td>71      </td><td> Province is  too long</td></tr>
+        <tr><td>72      </td><td> Company  is  too long</td></tr>
+        <tr><td>73      </td><td> Job  Title is  too long</td></tr>
+        <tr><td>74      </td><td> Home Phone is  too long</td></tr>
+        <tr><td>75      </td><td> Cell Phone is  too long</td></tr>
+        <tr><td>76      </td><td> Work Phone is  too long</td></tr>
+        <tr><td>77      </td><td> Fax  is  too long</td></tr>
+        <tr><td>80      </td><td> Invalid  Action:   The “action”  value is  not valid</td></tr>
+        <tr><td>81      </td><td> Invalid  Content type:   Request did not send  the content as applications/json</td></tr>
+        <tr><td>83      </td><td> Invalid  Input – the body  of  the request was malformed,  usually indicates bad json</td></tr>
+        <tr><td>84      </td><td> Passwords  aren’t  long  enough  (6  characters  and combination of letters and numbers)</td></tr>
+        <tr><td>85      </td><td> Password / Confirm Password aren’t the same.</td></tr>
+        <tr><td>86  – 90</td><td>Error  codes TBD</td></tr>
+      </table>
+    </div>
+</div>
+
+<div style="font-size:10pt;margin:12px;">Epublishing &copy; 2015</div>
+
+
+
