@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_api_issue
-  	return render json: { ErrorMesage: 'API routing_error Error' }
+    return render json: { ErrorMesage: 'API routing_error Error' }
   end
 
   def authentication_check
