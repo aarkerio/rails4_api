@@ -22,5 +22,15 @@ module Appname
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    # generators
+    config.generators do |g|
+      g.stylesheets = false
+      g.javascripts = false
+      g.test_framework  :rspec, fixture: false
+      g.template_engine :haml
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      # you can also specify a different test framework or ORM here
+      # g.orm             :mongoid
+    end
   end
 end
