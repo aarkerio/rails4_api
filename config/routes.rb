@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :groups
+  resources :groups
    get '/' => 'site#index', :as => 'site_index'
 
   namespace :v1, defaults: {format: :json} do
