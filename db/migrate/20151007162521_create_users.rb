@@ -3,8 +3,8 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :fname
       t.string :lname
-      t.string :uname
-      t.string :email
+      t.string :uname, unique: true
+      t.string :email, unique: true
       t.string :passwd
       t.boolean :active
       t.references :group, index: true, foreign_key: true
