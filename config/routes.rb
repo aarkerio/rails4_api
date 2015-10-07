@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   resources :customers
-=======
   resources :users
   resources :groups
   resources :groups
->>>>>>> new_password
-   get '/' => 'site#index', :as => 'site_index'
+  get '/' => 'site#index', :as => 'site_index'
 
   namespace :v1, defaults: {format: :json} do
     post  '/users/update/' => 'users#update_user', as: 'users_update'
@@ -19,6 +16,5 @@ Rails.application.routes.draw do
   end
 
   root to: 'site#index'
-
 
 end

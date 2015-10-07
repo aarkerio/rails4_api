@@ -22,7 +22,7 @@ CREATE TABLE users (
 );
 
 -- Customers
--- RAILS_ENV=development bundle exec rails g scaffold Customer name:string apy_key:string secret_key:string active:boolean
+-- RAILS_ENV=development bundle exec rails g scaffold Customer name:string api_key:string secret_key:string active:boolean
 
 
 
