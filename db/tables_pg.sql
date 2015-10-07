@@ -1,7 +1,7 @@
 -- rails4api Tables
 -- Chipotle Software (c) 2015
 
--- rails g scaffold Group name:string description:string
+-- RAILS_ENV=development bundle exec rails g scaffold Group name:string description:string
 CREATE TABLE groups (
   "id" serial PRIMARY KEY,
   "name" varchar(50) NOT NULL UNIQUE,
@@ -9,7 +9,7 @@ CREATE TABLE groups (
 );
 
 -- Users
--- rails g scaffold User fname:string lname:string uname:string email:string  passwd:string active:boolean group:references
+-- RAILS_ENV=development bundle exec rails g scaffold User fname:string lname:string uname:string email:string  passwd:string active:boolean group:references
 CREATE TABLE users (
     "id" serial PRIMARY KEY,
     "uname" varchar(50) NOT NULL UNIQUE, --login
@@ -20,3 +20,10 @@ CREATE TABLE users (
     "group_id" integer NOT NULL,                                                     -- Admin, normal user
     "created" timestamp(0) with time zone DEFAULT now() NOT NULL
 );
+
+-- Customers
+-- RAILS_ENV=development bundle exec rails g scaffold Customer name:string apy_key:string secret_key:string active:boolean
+
+
+
+
