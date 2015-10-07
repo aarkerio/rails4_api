@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :lname
       t.string :uname, unique: true
       t.string :email, unique: true
+      t.string :guid, unique: true  # global user ID
       t.string :passwd
       t.boolean :active
       t.references :group, index: true, foreign_key: true

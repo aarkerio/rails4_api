@@ -1,10 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Appname</title>
+  <title>Epublishing API DOCs</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <style type="text/css">
+  body {
+    color: black;
+    }
+   .section {
+    background-color: #eaeaea;
+    border: 2px dotted gray;
+    padding: 15px;
+    margin: 14px 4px 4px 4px;
+    width: 80%;
+   }
+   pre {
+    font-family: monospace;
+    padding: 6px;
+    border: 1px dotted gray;
+   }
+   .title_one {
+    font-weight: bolder;
+    font-size:16pt;
+    padding: 4px;
+   }
+   .CSSTable {
+    margin:0;
+    padding:0;
+    width:80%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #ffffff;
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-left-radius:0px;
+    border-bottom-left-radius:0px;
+    -moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-right-radius:0px;
+    -moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-right-radius:0px;
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-left-radius:0px;
+    border-top-left-radius:0px;
+    }.CSSTable table{
+      border-collapse: collapse;
+      border-spacing: 0;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    }.CSSTable tr:last-child td:last-child {
+    -moz-border-radius-bottomright:0px;
+    -webkit-border-bottom-right-radius:0px;
+    border-bottom-right-radius:0px;
+    }
+    .CSSTable table tr:first-child td:first-child {
+    -moz-border-radius-topleft:0px;
+    -webkit-border-top-left-radius:0px;
+    border-top-left-radius:0px;
+    }
+    .CSSTable table tr:first-child td:last-child {
+    -moz-border-radius-topright:0px;
+    -webkit-border-top-right-radius:0px;
+    border-top-right-radius:0px;
+    }.CSSTable tr:last-child td:first-child{
+    -moz-border-radius-bottomleft:0px;
+    -webkit-border-bottom-left-radius:0px;
+    border-bottom-left-radius:0px;
+    }
+    .CSSTable td{
+    vertical-align:middle;
+    background-color:#aad4ff;
+    border:1px solid #ffffff;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:7px;
+    font-size:10pt;
+    font-family:Arial;
+    font-weight:normal;
+    color:#000000;
+    }.CSSTable tr:last-child td{
+     border-width:0px 1px 0px 0px;
+    }.CSSTable tr td:last-child{
+    border-width:0px 0px 1px 0px;
+    }.CSSTable tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+    }
+    .CSSTable tr:first-child td{
+    background:-o-linear-gradient(bottom, #0057af 5%, #0057af 100%);
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0057af), color-stop(1, #0057af) );
+    background:-moz-linear-gradient( center top, #0057af 5%, #0057af 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0057af", endColorstr="#0057af");
+    background: -o-linear-gradient(top,#0057af,0057af);
+    background-color:#0057af;
+    border:0px solid #ffffff;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:14px;
+    font-family:Arial;
+    font-weight:bold;
+    color:#ffffff;
+    }
+    .CSSTable tr:first-child:hover td{
+    background:-o-linear-gradient(bottom, #0057af 5%, #0057af 100%);
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0057af), color-stop(1, #0057af) );
+    background:-moz-linear-gradient( center top, #0057af 5%, #0057af 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0057af", endColorstr="#0057af");
+    background: -o-linear-gradient(top,#0057af,0057af);
+    background-color:#0057af;
+    }
+    .CSSTable tr:first-child td:first-child{
+    border-width:0px 0px 1px 0px;
+    }
+    .CSSTable tr:first-child td:last-child{
+    border-width:0px 0px 1px 1px;
+    }
+    .example {
+      background-color: #fff;
+      padding: 5px;
+      margin: 25px;
+      width: 80%;
+      font-family: "Lucida Console", Monaco, monospace;
+      font-size: 10pt;
+      border: 1px solid gray;
+    }
+
+    .method {
+      background-color: #fff;
+      border: 1px solid gray;
+      font-size: 10pt ;
+      padding: 6px;
+      margin: 14px 4px 4px 4px;
+      width: 80%;
+   }
+  </style>
 </head>
 <body>
 
