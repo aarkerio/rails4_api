@@ -32,5 +32,9 @@ module Appname
       # you can also specify a different test framework or ORM here
       # g.orm             :mongoid
     end
+
+    # Custom directories with classes and modules you want to be autoloadable.
+    config.autoload_paths += %W(#{config.root}/lib)
+
   end
 end
