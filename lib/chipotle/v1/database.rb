@@ -1,4 +1,4 @@
-module Epublishing
+module Chipotle
   module V1
     module Database
         class DbConnect

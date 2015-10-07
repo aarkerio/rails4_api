@@ -1,8 +1,8 @@
 module V1
   class BaseController < ::ApplicationController
 
-    include Epublishing::V1::ErrorHandling
-    include Epublishing::V1::Database
+    include Chipotle::V1::ErrorHandling
+    include Chipotle::V1::Database
 
     before_filter :connect_customer   if Rails.env != 'test'
     layout false
@@ -14,7 +14,7 @@ module V1
     #
     # Returns database object.
     def connect_customer
-      Epublishing::V1::Database::DbConnect.connect_customer(@customer)
+      Chipotle::V1::Database::DbConnect.connect_customer(@customer)
     end
 
     def parse_request

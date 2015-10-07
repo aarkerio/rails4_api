@@ -1,9 +1,9 @@
-module Epublishing
+module Chipotle
   module V1
     module ErrorHandling
       extend ActiveSupport::Concern
 
-      include Epublishing::V1
+      include Chipotle::V1
 
         included do
           rescue_from Exception, :with => :rescue_from_exception          # catch-all
