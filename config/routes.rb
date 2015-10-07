@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :customers
+=======
+  resources :users
+  resources :groups
+  resources :groups
+>>>>>>> new_password
    get '/' => 'site#index', :as => 'site_index'
 
   namespace :v1, defaults: {format: :json} do
