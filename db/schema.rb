@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20151007162521) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
-    t.string   "apy_key"
-    t.string   "secret_key"
+    t.string   "api_key",    null: false
+    t.string   "secret_key", null: false
     t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20151007162521) do
     t.string   "fname"
     t.string   "lname"
     t.string   "uname"
-    t.string   "email"
-    t.string   "passwd"
+    t.string   "email",      null: false
+    t.string   "guid",       null: false
+    t.string   "passwd",     null: false
     t.boolean  "active"
     t.integer  "group_id"
     t.datetime "created_at", null: false

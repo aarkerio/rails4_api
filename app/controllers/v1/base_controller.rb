@@ -18,11 +18,11 @@ module V1
     end
 
     def parse_request
-        @json = JSON.parse(request.body.read)
+      @json = JSON.parse(request.body.read)
     end
 
     def render_error(error)
-        render(json: error, status: error.status)
+      render(json: error, status: error.status)
     end
   end
 end

@@ -20,9 +20,9 @@ module Epublishing
 
             case Rails.env
             when 'production'
-              "#{client}.enhanced-admin.epublishing.com"
+              "#{client}.prod-server.your-company.com"
             when 'staging'
-              "#{client}.enhanced-admin-stage.epublishing.com"
+              "#{client}.stage-server.your-company.com"
             when 'local'
               "localhost"
             else
