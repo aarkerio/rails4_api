@@ -18,11 +18,16 @@ ActiveRecord::Schema.define(version: 20151007162521) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
-    t.string   "api_key",    null: false
-    t.string   "secret_key", null: false
+    t.string   "api_key",       null: false
+    t.string   "secret_key",    null: false
     t.boolean  "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "db_name"
+    t.string   "db_user"
+    t.string   "db_pwd"
+    t.string   "db_staging"
+    t.string   "db_production"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "groups", force: :cascade do |t|
