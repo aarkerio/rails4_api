@@ -24,10 +24,16 @@ class EstablishDatabaseConnection
   end
 
   def build_connection(customer)
-    params = { adapter: 'mysql2', username: customer.db_user, password: customer.db_pwd }
+    return unless Rails.application.config.active_multi_tenant_database
+
+    adapter = ActiveRecord::Base.configurations[Rails.env]['adapter']
+    Rails.logger.debug "#####################>> Adapter #{adapter}"
+    Rails.logger.debug "#####################>> active_multi_tenant_database #{Rails.application.config.active_multi_tenant_database}"
+
+    params = { adapter: adapter, username: customer.db_user, password: customer.db_pwd }
     case Rails.env
-    when 'local'
-      params[:database] = "#{customer.db_name}_local"
+    when 'development'
+      params[:database] = "#{customer.db_name}_development"
       params[:host]     = 'localhost'
     when 'staging'
       params[:database] = "#{customer.db_name}_staging"

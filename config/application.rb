@@ -36,5 +36,7 @@ module Appname
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # Set MTDB
+    config.active_multi_tenant_database = true
   end
 end
