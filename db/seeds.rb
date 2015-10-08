@@ -15,7 +15,9 @@ end
 u = User.create! uname: 'admin', email: 'admin@example.com', passwd: 'admin', group_id: 1, guid: 'admin'
 
 # secret_key  = Digest::SHA256.hexdigest('koalacorp')
-c = Customer.create! name: 'Koala Corp', api_key: 'koalacorp', secret_key: '2bfd3972b34942d5277df8f57f45b8c7dfc3088ce4aca7dada433ed5e110f48b', active: true
+data = {name: 'Koala Corp', api_key: 'koalacorp', secret_key: '2bfd3972b34942d5277df8f57f45b8c7dfc3088ce4aca7dada433ed5e110f48b', active: true,
+       db_name: 'koalacorp', db_user: 'koala',  db_pwd: '12dert66888', db_staging: 'staging-server.your-company.com', db_production: 'prod-server.your-company.com'}
+c = Customer.create! data
 
 u = User.create! uname: 'pancho69', fname: 'Pancho', lname: 'Villa', email: 'pancho@example.com', passwd: 'usernormal', group_id: 2, guid: 'bb22Hga45@GG512klq'
 
