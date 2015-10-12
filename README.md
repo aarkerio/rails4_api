@@ -16,7 +16,11 @@ for all your customers, I'm adding a middleware "switcher" database.
 
 Rspec and VCR to test the code.
 
+
 Rails: 4.2.3
 
 Ruby:  2.2.1p85
 
+
+
+License: GPLv3

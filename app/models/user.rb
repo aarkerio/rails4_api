@@ -3,13 +3,11 @@ class User < ActiveRecord::Base
 
   belongs_to :group
 
-  validates :guid,  :presence: true, :uniqueness: true
-  validates :email, :presence: true, :uniqueness: true
-
   before_create :generate_token
   before_create :set_active
 
-  validates :legacy_id, uniqueness: true
+  validates :guid,  presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
   def get_token
     random_token = ''
@@ -37,6 +35,4 @@ class User < ActiveRecord::Base
       save
     end
   end
-
 end
-
