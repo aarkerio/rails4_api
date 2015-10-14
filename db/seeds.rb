@@ -24,3 +24,6 @@ u = User.create! uname: 'pancho69', fname: 'Pancho', lname: 'Villa', email: 'pan
 u = User.create! uname: 'silvio61', fname: 'Julio', lname: 'Lopez', email: 'lpez@example.com', passwd: 'usernormal', group_id: 2, guid: 'bHH45WWw58912klq'
 
 
+#Test it locally
+# http://koalacorp:koalacorp@0.0.0.0:3000/v1/users/create?user[fname]=first_name&user[lname]=smith&user[email]=hj@ert.com&user[uname]=smiy56
+

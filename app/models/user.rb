@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
   before_create :generate_token
   before_create :set_active
 
-  validates :guid,  presence: true, uniqueness: true
+  validates :guid, uniqueness: true
   validates :email, presence: true, uniqueness: true
+  validates :uname, presence: true, uniqueness: true
 
   def get_token
     random_token = ''
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
     self.active = true
   end
 
+  # To update a table with already existent users
   def generate_all_tokens
     find_each do |user|
       next  if guid.nil?

@@ -18,8 +18,8 @@ module V1
       #
       # Returns a User object.
       def create_user
-        @user = Account.new.create_user(params)
-
+        #return render json: user_params.to_json
+        @user = Account.new.create_user(user_params)
         if @user.class.name == 'User'
           @message = { message: 'User created sucessfully' }
         else
@@ -36,7 +36,7 @@ module V1
           return fail ActiveRecord::RecordNotFound, 'User not found'
         end
 
-        @user = Account.new.update_user(params)
+        @user = Account.new.update_user(user_params)
 
         if @user.class.name == 'User'
           @message = { message: 'User updated sucessfully' }
@@ -54,7 +54,7 @@ module V1
       def get_guid
         #return render json: 'gettoken'
         #customer_profile_external_id
-        @user  = Account.get_token(params)
+        @user  = Account.get_token(user_params)
 
         if @user.nil?
           fail ActiveRecord::RecordNotFound, 'User not found'
@@ -68,8 +68,8 @@ module V1
       # text  - The guid String.
       #
       # Returns a User object.
-      def create_token
-        @user = Account.create_token(params)
+      def create_guid
+        @user = Account.create_token(user_params)
 
         fail ActiveRecord::RecordNotFound, 'User not found'  if @user.nil?
 
@@ -109,5 +109,17 @@ module V1
 
         errors_by_name[error_name]
       end
+
+      private
+
+      # Never trust parameters from the scary internet, only allow the white list through.
+      def user_params
+        params.require(:user).permit(:fname, :lname, :uname, :email, :passwd, :guid)
+      end
+
+      # Use callbacks to share common setup or constraints between actions.
+      #def set_user
+      #  @user = User.find(params[:id])
+      #end
     end
 end

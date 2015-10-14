@@ -13,17 +13,17 @@ class Account
     user
   end
 
-  def self.get_token(params)
-    conditions = build_conditions(params)
+  def self.get_guid(user_params)
+    conditions = build_conditions(user_params)
     User.where(conditions).first
   end
 
-  def create_user(params)
-    register_params = remove_params params
-    validate        = validate_fields register_params
-    return validation_messages(validate) if validate != true
-    register_params[:postal_code] = '0000'
-    user = User.new register_params
+  def create_user(user_params)
+    #register_params = remove_params params
+    #validate        = validate_fields register_params
+    #return validation_messages(validate) if validate != true
+    #return user_params
+    user = User.new user_params
     user.save!
     user
   end
@@ -56,6 +56,7 @@ class Account
   end
 
   def validate_fields(params)
+    return true  # not implemented yet
     return 50   if params[:user_type].nil?
     return 51   if params[:email].nil?
     return 52   if params[:first].nil?
@@ -125,9 +126,7 @@ class Account
   end
 
   def remove_params(params)
-    valid_fields = ['user_type', 'first', 'last', 'middle', 'suffix','email','country','new_password','new_password_confirmation',
-                    'notes', 'address1', 'address2', 'city', 'state', 'postal_code', 'province', 'guid', 'legacy_id',
-                    'company', 'job_title', 'home_phone', 'work_phone', 'cell_phone', 'fax']
+    valid_fields = ['fname', 'lname', 'guid', 'passwd', 'uname','email']
     params.delete_if do |k, v|
       !valid_fields.include? k
     end
