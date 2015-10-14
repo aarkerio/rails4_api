@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   namespace :v1, defaults: {format: :json} do
     post  '/users/update/' => 'users#update_user', as: 'users_update'
     post  '/users/create' => 'users#create_user', as: 'users_create'
-    get   '/users/getinfo(/:user_token)' => 'users#index', as: 'users_index'
-    get   '/users/delete/(/:user_token)' => 'users#delete', as: 'users_delete'
-    get   '/users/gettoken/' => 'users#get_token', as: 'users_gettoken'
+    get   '/users/getinfo(/:guid)' => 'users#index', as: 'users_index'
+    get   '/users/delete/(/:guid)' => 'users#delete', as: 'users_delete'
+    get   '/users/getguid/' => 'users#get_guid', as: 'users_getguid'
     get   '/users/createtoken/' => 'users#create_token'
-    post  '/users/subscriptions(/:user_token)' => 'users#subscriptions', as: 'subscriptions'
+    post  '/users/subscriptions(/:guid)' => 'users#subscriptions', as: 'subscriptions'
   end
 
   root to: 'site#index'

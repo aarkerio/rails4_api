@@ -3,13 +3,13 @@ module V1
 
       # Shows a user. /users/getinfo route
       #
-      # text  - The user_token String.
+      # text  - The guid String.
       #
       # Returns a User object.
       def index
         #return render json: 'In Index'
-        fail ActiveRecord::RecordNotFound, 'User not found'  if params[:user_token].blank?
-        @user  = Account.get_user(params[:user_token])
+        fail ActiveRecord::RecordNotFound, 'User not found'  if params[:guid].blank?
+        @user  = Account.get_user(params[:guid])
 
         fail ActiveRecord::RecordNotFound, 'User not found'  if @user.nil?
       end
@@ -32,7 +32,7 @@ module V1
       #
       # Returns a User object.
       def update_user
-        if params[:user_token].blank?
+        if params[:guid].blank?
           return fail ActiveRecord::RecordNotFound, 'User not found'
         end
 
@@ -48,10 +48,10 @@ module V1
 
       # Shows an user.
       #
-      # text  - The user_token String.
+      # text  - The guid String.
       #
       # Returns a User object.
-      def get_token
+      def get_guid
         #return render json: 'gettoken'
         #customer_profile_external_id
         @user  = Account.get_token(params)
@@ -63,9 +63,9 @@ module V1
         render 'index'
       end
 
-      # Create a user_token for the Account.
+      # Create a guid for the Account.
       #
-      # text  - The user_token String.
+      # text  - The guid String.
       #
       # Returns a User object.
       def create_token
@@ -78,7 +78,7 @@ module V1
 
       # Disable an Account.
       #
-      # text  - The user_token String.
+      # text  - The guid String.
       #
       # Examples
       #
@@ -87,11 +87,11 @@ module V1
       #
       # Returns a User object.
       def delete
-        if params[:user_token].blank?
+        if params[:guid].blank?
           return fail ActiveRecord::RecordNotFound, 'User not found'
         end
 
-        result = Account.new.disable_user(params[:user_token])
+        result = Account.new.disable_user(params[:guid])
 
         if result
           @message = { message: 'User sucesfully deleted'}
