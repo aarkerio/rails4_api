@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get   '/users/delete/(/:guid)' => 'users#delete', as: 'users_delete'
     get   '/users/getguid/' => 'users#get_guid', as: 'users_getguid'
     get   '/users/createtoken/' => 'users#create_token'
-    post  '/users/subscriptions(/:guid)' => 'users#subscriptions', as: 'subscriptions'
+    post  '/users/consults(/:guid)' => 'users#subscriptions', as: 'subscriptions'
   end
 
   root to: 'site#index'

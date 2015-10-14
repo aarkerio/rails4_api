@@ -32,7 +32,8 @@ module V1
       #
       # Returns a User object.
       def update_user
-        if params[:guid].blank?
+        #return render json: user_params.to_json
+        if user_params[:guid].blank?
           return fail ActiveRecord::RecordNotFound, 'User not found'
         end
 
@@ -87,6 +88,7 @@ module V1
       #
       # Returns a User object.
       def delete
+        #return render json: params.to_json
         if params[:guid].blank?
           return fail ActiveRecord::RecordNotFound, 'User not found'
         end

@@ -19,18 +19,17 @@ class Account
   end
 
   def create_user(user_params)
-    #register_params = remove_params params
-    #validate        = validate_fields register_params
-    #return validation_messages(validate) if validate != true
-    #return user_params
-    user = User.new user_params
+    register_params = remove_params user_params
+    validate        = validate_fields register_params
+    return validation_messages(validate) if validate != true
+    user = User.new register_params
     user.save!
     user
   end
 
-  def update_user(params)
-    update_params = remove_params params
-    user = User.find_by_guid params[:guid]
+  def update_user(user_params)
+    update_params = remove_params user_params
+    user = User.find_by_guid user_params[:guid]
     return   if user.nil?
     user.assign_attributes(update_params)
     user.save!
