@@ -37,6 +37,6 @@ module Appname
     config.autoload_paths += %W(#{config.root}/lib)
 
     # Set MTDB
-    config.active_multi_tenant_database = true
+    config.active_multi_tenant_database = false
   end
 end

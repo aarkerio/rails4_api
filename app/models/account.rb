@@ -1,15 +1,15 @@
 
 class Account
 
-  def self.get_user(user_token)
-    User.where( user_token: user_token, active: true ).first
+  def self.get_user(guid)
+    User.where( guid: guid, active: true ).first
   end
 
   def self.create_token(params)
     conditions = build_conditions(params)
     user = User.where( conditions ).first
-    return user   if user.nil? || user.user_token.present?
-    user.update_attribute('user_token', user.get_token)
+    return user   if user.nil? || user.guid.present?
+    user.update_attribute('guid', user.get_token)
     user
   end
 
@@ -30,15 +30,15 @@ class Account
 
   def update_user(params)
     update_params = remove_params params
-    user = User.find_by_user_token params[:user_token]
+    user = User.find_by_guid params[:guid]
     return   if user.nil?
     user.assign_attributes(update_params)
     user.save!
     user
   end
 
-  def disable_user(user_token)
-    user = User.where( user_token: user_token, active: true ).first
+  def disable_user(guid)
+    user = User.where( guid: guid, active: true ).first
     return false if user.nil?
     user.update_attribute(:active, false)
   end
@@ -126,7 +126,7 @@ class Account
 
   def remove_params(params)
     valid_fields = ['user_type', 'first', 'last', 'middle', 'suffix','email','country','new_password','new_password_confirmation',
-                    'notes', 'address1', 'address2', 'city', 'state', 'postal_code', 'province', 'user_token', 'legacy_id',
+                    'notes', 'address1', 'address2', 'city', 'state', 'postal_code', 'province', 'guid', 'legacy_id',
                     'company', 'job_title', 'home_phone', 'work_phone', 'cell_phone', 'fax']
     params.delete_if do |k, v|
       !valid_fields.include? k

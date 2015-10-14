@@ -7,11 +7,11 @@ module V1
       #
       # Returns a User object.
       def index
-        #return render json: 'In Index'
-        fail ActiveRecord::RecordNotFound, 'User not found'  if params[:guid].blank?
+        #return render json: params.to_json
+        fail ActiveRecord::RecordNotFound, 'User not found one'  if params[:guid].blank?
         @user  = Account.get_user(params[:guid])
 
-        fail ActiveRecord::RecordNotFound, 'User not found'  if @user.nil?
+        fail ActiveRecord::RecordNotFound, 'User not found two'  if @user.nil?
       end
 
       # Creates a new user Account.

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     random_token = ''
     loop do
       random_token = SecureRandom.urlsafe_base64(nil, false)
-      break random_token   unless ::User.exists?(user_token: random_token)
+      break random_token   unless ::User.exists?(guid: random_token)
     end
     random_token
   end
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   private
 
   def generate_token
-    self.user_token = get_token
+    self.guid = get_token
   end
 
   def set_active
@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
 
   def generate_all_tokens
     find_each do |user|
-      next  if user_token.nil?
-      user_token = SecureRandom.urlsafe_base64(nil, false)
+      next  if guid.nil?
+      guid = SecureRandom.urlsafe_base64(nil, false)
       save
     end
   end

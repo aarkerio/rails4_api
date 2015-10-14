@@ -21,3 +21,6 @@ c = Customer.create! data
 
 u = User.create! uname: 'pancho69', fname: 'Pancho', lname: 'Villa', email: 'pancho@example.com', passwd: 'usernormal', group_id: 2, guid: 'bb22Hga45@GG512klq'
 
+u = User.create! uname: 'silvio61', fname: 'Julio', lname: 'Lopez', email: 'lpez@example.com', passwd: 'usernormal', group_id: 2, guid: 'bHH45WWw58912klq'
+
+
