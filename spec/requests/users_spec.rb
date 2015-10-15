@@ -3,12 +3,12 @@ require 'spec_helper'
 describe 'users API' do
 
   before :each do
-    @user = FactoryGirl.create :user, email: 'testo@testonex.com', user_token: 'NFAxNDU2N3l1aVVVV'
+    @user = FactoryGirl.create :user, email: 'testo@testonex.com', guid: 'NFAxNDU2N3l1aVVVV'
     @env ||= {}
     @env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('4P14567yuiUUU','s4cr4t4567yuiXX')
   end
 
-  it 'creates or retrieves a user_token by email on create_token action' do
+  it 'creates or retrieves a guid by email on create_token action' do
     user = FactoryGirl.create :user
     get "/v1/users/createtoken/?email=#{user.email}", {}, @env
 
@@ -19,12 +19,11 @@ describe 'users API' do
   it 'creates a new user on create_user action' do
     params = {
       user_type: 'individual',
-      first: 'John',
-      last: 'Smith',
+      fname: 'John',
+      lname: 'Smith',
       email: 'jsonmith66@jmithmx.com',
-      country: 'US',
-      new_password: 'ASQWert78@@',
-      new_password_confirmation: 'ASQWert78@@'
+      uname: 'smith67',
+      passwd: 'ASQWert78@@'
     }
 
     post '/v1/users/create', params, @env
@@ -37,7 +36,7 @@ describe 'users API' do
 
   it 'updates a user on update_user action' do
     params = {
-      user_token: @user.user_token,
+      guid: @user.guid,
       first: 'John',
       last: 'Smith',
       email: 'jsonmith66@updated.com'
@@ -65,7 +64,7 @@ describe 'users API' do
   end
 
   it 'sets a user as active false on delete action' do
-     get "/v1/users/delete/#{@user.user_token}", {}, @env
+     get "/v1/users/delete/#{@user.guid}", {}, @env
 
     expect(response).to be_success
     expect(json['account']['message']).to eq 'User sucesfully deleted'

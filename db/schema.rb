@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20151007162521) do
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.string   "api_key",       null: false
-    t.string   "secret_key",    null: false
+    t.string   "secret_key"
     t.boolean  "active"
     t.string   "db_name"
     t.string   "db_user"

@@ -55,7 +55,7 @@ module V1
       def get_guid
         #return render json: 'gettoken'
         #customer_profile_external_id
-        @user  = Account.get_token(user_params)
+        @user  = Account.get_guid(user_params)
 
         if @user.nil?
           fail ActiveRecord::RecordNotFound, 'User not found'
